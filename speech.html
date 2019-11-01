@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Speech Commands</title>
+</head>
+<body>
+  <div id="app">
+    <div id="text"></div>
+    <button id="start-btn">Click to listen</button>
+    <button id="stop-btn">Click to stop listening</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.1.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands/dist/speech-commands.min.js"></script>
+  <script type="module" src="./src/index.mjs"></script>
+</body>
+</html>

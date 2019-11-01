@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Iris</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+  <div class="container my-4">
+    <div class="jumbotron">
+      <h1 class="display-4">Iris Dataset Demo</h1>
+      <p class="lead">
+          This example uses a neural network to classify tabular data representing different flowers.
+          The data used for each flower are the petal length and width as well as the sepal
+          length and width. The goal is to predict what kind of flower it is based on those features of
+          each data point. The data comes from the famous Iris flower data set.
+      </p>
+    </div>
+
+    <section class="dashboard my-4">
+      <h4>Model parameters</h4>
+      <div class="form-inline py-4">
+        <div class="form-group mb-2">
+          <label for="epoch" class="sr-only">Epoch</label>
+          <input type="number" min="10" class="form-control" id="epoch" placeholder="Epoch (10-100)">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="learningRate" class="sr-only">Accuracy</label>
+          <input type="number" max="0.5" class="form-control" id="learningRate" placeholder="Learning Rate (0-0.5)">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary px-4 mb-2" id="trainBtn">Train</button>
+    </section>
+        
+    <section class="prediction my-4">
+      <h4>Prediction</h4>
+      <div class="form-inline py-4">
+        <div class="form-group mb-2">
+          <label for="sepalWidth" class="sr-only">Sepal Width</label>
+          <input type="number" max="0.5" class="form-control" id="sepalWidth" placeholder="Sepal Width">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="sepalHeight" class="sr-only">Sepal Height</label>
+          <input type="number" max="0.5" class="form-control" id="sepalHeight" placeholder="Sepal Height">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="petalWidth" class="sr-only">Petal Width</label>
+          <input type="number" max="0.5" class="form-control" id="petalWidth" placeholder="Petal Width">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="petalHeight" class="sr-only">Petal Height</label>
+          <input type="number" max="0.5" class="form-control" id="petalHeight" placeholder="Petal Height">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary px-4 mb-2" id="predictBtn">Predict</button>
+    </section>
+  
+    <section class="canvases my-4">
+      <div  style="min-height: 200px;" class="loss w-100">
+        <h4>Loss</h4>
+        <div id="lossCanvas"></div>
+      </div>
+      <div  style="min-height: 200px;" class="accuracy w-100">
+        <h4>Accuracy</h4>
+        <div id="accuracyCanvas"></div>
+      </div>
+    </section>
+    <pre class="pre-scrollable text-light bg-dark p-2" id="logger"></pre>
+  </div>
+</body>
+<script src="./src/model.js"></script>
+</html>
