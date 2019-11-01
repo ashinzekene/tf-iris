@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Iris</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+  <link href="./src/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"></head>
 <body>
   <div class="container my-4">
     <div class="jumbotron">
@@ -23,11 +23,15 @@
       <div class="form-inline py-4">
         <div class="form-group mb-2">
           <label for="epoch" class="sr-only">Epoch</label>
-          <input type="number" min="10" class="form-control" id="epoch" placeholder="Epoch (10-100)">
+          <input type="number" min="10" class="form-control" id="epoch" value="40" placeholder="Epoch (10-100)">
         </div>
         <div class="form-group mx-sm-3 mb-2">
-          <label for="learningRate" class="sr-only">Accuracy</label>
-          <input type="number" max="0.5" class="form-control" id="learningRate" placeholder="Learning Rate (0-0.5)">
+          <label for="learningRate" class="sr-only">Learning Rate</label>
+          <input type="number" max="0.5" class="form-control" id="learningRate" value="0.2" placeholder="Learning Rate (0-0.5)">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="probThreshold" class="sr-only">Prob. Threshold</label>
+          <input type="number" max="0.5" class="form-control" id="probThreshold" value="0.9" placeholder="Learning Rate (0-0.5)">
         </div>
       </div>
       <button type="button" class="btn btn-primary px-4 mb-2" id="trainBtn">Train</button>
@@ -38,22 +42,23 @@
       <div class="form-inline py-4">
         <div class="form-group mb-2">
           <label for="sepalWidth" class="sr-only">Sepal Width</label>
-          <input type="number" max="0.5" class="form-control" id="sepalWidth" placeholder="Sepal Width">
+          <input value="3.0" type="number" max="0.5" class="form-control" id="sepalWidth" placeholder="Sepal Width">
         </div>
         <div class="form-group mx-sm-3 mb-2">
-          <label for="sepalHeight" class="sr-only">Sepal Height</label>
-          <input type="number" max="0.5" class="form-control" id="sepalHeight" placeholder="Sepal Height">
+          <label for="sepalLength" class="sr-only">Sepal Length</label>
+          <input value="4.9" type="number" max="0.5" class="form-control" id="sepalLength" placeholder="Sepal Length">
         </div>
         <div class="form-group mx-sm-3 mb-2">
           <label for="petalWidth" class="sr-only">Petal Width</label>
-          <input type="number" max="0.5" class="form-control" id="petalWidth" placeholder="Petal Width">
+          <input value="0.2" type="number" max="0.5" class="form-control" id="petalWidth" placeholder="Petal Width">
         </div>
         <div class="form-group mx-sm-3 mb-2">
-          <label for="petalHeight" class="sr-only">Petal Height</label>
-          <input type="number" max="0.5" class="form-control" id="petalHeight" placeholder="Petal Height">
+          <label for="petalLength" class="sr-only">Petal Length</label>
+          <input value="1.4" type="number" max="0.5" class="form-control" id="petalLength" placeholder="Petal Length">
         </div>
       </div>
       <button type="button" class="btn btn-primary px-4 mb-2" id="predictBtn">Predict</button>
+      <code class="mx-2" id="predictionResult"></code>
     </section>
   
     <section class="canvases my-4">

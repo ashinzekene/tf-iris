@@ -1,5 +1,10 @@
 import * as tf from "@tensorflow/tfjs";
 import iris from "./iris.json";
+import { UI } from "./ui";
+
+const IRIS_CLASSES = [
+  "setosa", "virginica", "versicolor"
+]
 
 export const data = (function shuffle(irisData) {
   for (var i = irisData.length - 1; i > 0; i--) {
@@ -41,7 +46,7 @@ export function getFeaturesTensor(data) {
 /**
  * One hot encoding of labels  \
  * [1,0,0] === "setosa"  \
- * [0,1,0] === "virginia"  \
+ * [0,1,0] === "virginica"  \
  * [0,0,1] === "versicolor"
  * @param {any[]} data
  * @returns {import("@tensorflow/tfjs").Tensor2D}
@@ -53,4 +58,17 @@ export function getLabelsTensor(data) {
     feature.species === "versicolor" ? 1 : 0
   ]);
   return tf.tensor2d(labels, [data.length, 3]);
+}
+
+
+/**
+ * 
+ * @param {import("@tensorflow/tfjs").Tensor2D} data array of the
+ * @returns {"setosa"|"virginica"|"versicolor"[]}
+ */
+export function predictionToSpecies(data) {
+  const isGreaterThanThreshold = data.max(1).arraySync().every(v => v > UI.getProbThreshold());
+  if (!isGreaterThanThreshold) return ['unknown']
+  const results = data.argMax(1).arraySync();
+  return results.map(i => IRIS_CLASSES[i])
 }

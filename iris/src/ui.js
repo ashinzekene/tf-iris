@@ -1,11 +1,11 @@
 const epochElem = document.querySelector("#epoch")
 const learningRateElem = document.querySelector("#learningRate")
+const probThresholdElem = document.querySelector("#probThreshold")
 
 const sepalWidthElem = document.querySelector("#sepalWidth")
-const sepalHeightElem = document.querySelector("#sepalHeight")
+const sepalLengthElem = document.querySelector("#sepalLength")
 const petalWidthElem = document.querySelector("#petalWidth")
-const petalHeightElem = document.querySelector("#petalHeight")
-
+const petalLengthElem = document.querySelector("#petalLength")
 
 const trainBtn =  document.querySelector("#trainBtn")
 const predictBtn =  document.querySelector("#predictBtn")
@@ -13,10 +13,14 @@ const predictBtn =  document.querySelector("#predictBtn")
 export const loggerElem = document.querySelector("#logger")
 export const lossContainer = document.querySelector("#lossCanvas")
 export const accuracyContainer = document.querySelector("#accuracyCanvas")
+export const predictionResult = document.querySelector("#predictionResult")
 
 export const UI = {
   getEpoch() {
     return parseInt(epochElem.value)
+  },
+  getProbThreshold() {
+    return parseFloat(probThresholdElem.value)
   },
   getLearningRate() {
     return parseFloat(learningRateElem.value)
@@ -24,9 +28,9 @@ export const UI = {
   getPerdictionValues() {
     return {
       sepalWidth: parseFloat(sepalWidthElem.value),
-      sepalHeight: parseFloat(sepalHeightElem.value),
+      sepalLength: parseFloat(sepalLengthElem.value),
       petalWidth: parseFloat(petalWidthElem.value),
-      petalHeight: parseFloat(petalHeightElem.value),
+      petalLength: parseFloat(petalLengthElem.value),
     }
   },
   /**

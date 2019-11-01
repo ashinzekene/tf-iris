@@ -1,16 +1,19 @@
 import * as tf from "@tensorflow/tfjs";
 import * as tfvis from '@tensorflow/tfjs-vis';
 
-import { splitAndTrainTest, getFeaturesTensor, getLabelsTensor } from "./data";
-import { UI, lossContainer, accuracyContainer, loggerElem } from "./ui";
+import { splitAndTrainTest, getFeaturesTensor, getLabelsTensor, predictionToSpecies } from "./data";
+import { UI, lossContainer, accuracyContainer, loggerElem, predictionResult } from "./ui";
 
-const { train, test } = splitAndTrainTest(0.8);
+const { train, test } = splitAndTrainTest(0.9);
 
 const trainingData = getFeaturesTensor(train);
 const trainingLabels = getLabelsTensor(train);
 const testData = getFeaturesTensor(test);
 const testLabels = getLabelsTensor(test);
 
+/**
+ * @type {import("@tensorflow/tfjs").Sequential}
+ */
 let model;
 
 async function createAndTrainModel() {
@@ -41,13 +44,14 @@ async function createAndTrainModel() {
   console.log("Training started");
   await model.fit(trainingData, trainingLabels, {
     epochs: UI.getEpoch(),
+    validationSplit: 0.1,
     callbacks: {
       onEpochEnd(epoch, logs) {
         trainLogs.push(logs);
         tfvis.show.history(lossContainer, trainLogs, ['loss', 'val_loss'])
         tfvis.show.history(accuracyContainer, trainLogs, ['acc', 'val_acc'])
         loggerElem.textContent += `Epoch ${epoch + 1}/${UI.getEpoch()}', loss: ${logs.loss}, accuracy: ${logs.acc}\n`;
-        loggerElem.scrollTop = loggerElem.scrollHeight
+        loggerElem.scrollTop = loggerElem.scrollLength
       },
     },
   });
@@ -56,24 +60,14 @@ async function createAndTrainModel() {
 
 UI.onTrainClick(createAndTrainModel)
 
-console.log(typeof UI.onPredictClick)
 
 UI.onPredictClick(() => {
-  console.log(
-    UI.getEpoch(),
-    UI.getLearningRate(),
-    UI.getPerdictionValues()
-  )  
+  const {
+    petalLength, petalWidth, sepalLength, sepalWidth,
+   } = UI.getPerdictionValues()
+  if (!model) return
+  const prediction = model.predict(tf.tensor2d([
+    [sepalLength, sepalWidth, petalWidth, petalLength]
+  ], [1, 4]))
+  predictionResult.textContent = predictionToSpecies(prediction)[0]
 })
-
-(async function() {
-  await createAndTrainModel();
-  const result = model.predict(testData);
-  result.print();
-  const arg = tf.argMax(result, 1);
-
-  const arrayResult = testLabels.arraySync();
-  console.log(
-    arg.arraySync().filter((a, i) => !!arrayResult[i][a]).length / arg.arraySync().length,
-  );
-})();
