@@ -46,9 +46,9 @@ export function getFeaturesTensor() {
 
 /**
  * One hot encoding of labels  \
- * [1,0,0] === "setosa"  \
- * [0,1,0] === "virginica"  \
- * [0,0,1] === "versicolor"
+ * [1,0,0] ==> "setosa"  \
+ * [0,1,0] ==> "virginica"  \
+ * [0,0,1] ==> "versicolor"
  * @param {any[]} data
  * @returns {import("@tensorflow/tfjs").Tensor2D}
  */
