@@ -17,6 +17,7 @@ export const data = (function shuffle(irisData) {
 })([...iris])
 
 /**
+ * **NOT USED**\
  * Split to train and test set
  * @param {number} factor factor to split
  */
@@ -33,7 +34,7 @@ export function splitAndTrainTest(factor) {
  * @param {any[]} data
  * @returns {import("@tensorflow/tfjs").Tensor2D}
  */
-export function getFeaturesTensor(data) {
+export function getFeaturesTensor() {
   const features = data.map(feature => [
     feature.sepal_length,
     feature.sepal_width,
@@ -51,7 +52,7 @@ export function getFeaturesTensor(data) {
  * @param {any[]} data
  * @returns {import("@tensorflow/tfjs").Tensor2D}
  */
-export function getLabelsTensor(data) {
+export function getLabelsTensor() {
   const labels = data.map(feature => [
     feature.species === "setosa" ? 1 : 0,
     feature.species === "virginica" ? 1 : 0,
@@ -67,8 +68,6 @@ export function getLabelsTensor(data) {
  * @returns {"setosa"|"virginica"|"versicolor"[]}
  */
 export function predictionToSpecies(data) {
-  const isGreaterThanThreshold = data.max(1).arraySync().every(v => v > UI.getProbThreshold());
-  if (!isGreaterThanThreshold) return ['unknown']
   const results = data.argMax(1).arraySync();
   return results.map(i => IRIS_CLASSES[i])
 }

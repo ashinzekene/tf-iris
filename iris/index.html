@@ -20,18 +20,14 @@
 
     <section class="dashboard my-4">
       <h4>Model parameters</h4>
-      <div class="form-inline py-4">
-        <div class="form-group mb-2">
-          <label for="epoch" class="sr-only">Epoch</label>
+      <div class="form-row py-4">
+        <div class="form-group col">
+          <label for="epoch">Epoch</label>
           <input type="number" min="10" class="form-control" id="epoch" value="40" placeholder="Epoch (10-100)">
         </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="learningRate" class="sr-only">Learning Rate</label>
+        <div class="form-group col">
+          <label for="learningRate">Learning Rate</label>
           <input type="number" max="0.5" class="form-control" id="learningRate" value="0.2" placeholder="Learning Rate (0-0.5)">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="probThreshold" class="sr-only">Prob. Threshold</label>
-          <input type="number" max="0.5" class="form-control" id="probThreshold" value="0.9" placeholder="Learning Rate (0-0.5)">
         </div>
       </div>
       <button type="button" class="btn btn-primary px-4 mb-2" id="trainBtn">Train</button>
@@ -39,26 +35,27 @@
         
     <section class="prediction my-4">
       <h4>Prediction</h4>
-      <div class="form-inline py-4">
-        <div class="form-group mb-2">
-          <label for="sepalWidth" class="sr-only">Sepal Width</label>
-          <input value="3.0" type="number" max="0.5" class="form-control" id="sepalWidth" placeholder="Sepal Width">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="sepalLength" class="sr-only">Sepal Length</label>
+      <div class="form-row py-4">
+        <div class="form-group col-lg-3 col-sm-6">
+          <label for="sepalLength">Sepal Length</label>
           <input value="4.9" type="number" max="0.5" class="form-control" id="sepalLength" placeholder="Sepal Length">
         </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="petalWidth" class="sr-only">Petal Width</label>
-          <input value="0.2" type="number" max="0.5" class="form-control" id="petalWidth" placeholder="Petal Width">
+        <div class="form-group col-lg-3 col-sm-6">
+          <label for="sepalWidth">Sepal Width</label>
+          <input value="3.0" type="number" max="0.5" class="form-control" id="sepalWidth" placeholder="Sepal Width">
         </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="petalLength" class="sr-only">Petal Length</label>
+        <div class="form-group col-lg-3 col-sm-6">
+          <label for="petalLength">Petal Length</label>
           <input value="1.4" type="number" max="0.5" class="form-control" id="petalLength" placeholder="Petal Length">
+        </div>
+        <div class="form-group col-lg-3 col-sm-6">
+          <label for="petalWidth">Petal Width</label>
+          <input value="0.2" type="number" max="0.5" class="form-control" id="petalWidth" placeholder="Petal Width">
         </div>
       </div>
       <button type="button" class="btn btn-primary px-4 mb-2" id="predictBtn">Predict</button>
       <code class="mx-2" id="predictionResult"></code>
+      <img style="display: none; height: 400px; width: 400px;" src="./src/iris_setosa.jpg" alt="An iris plant" class="img-thumbnail mt-4">
     </section>
   
     <section class="canvases my-4">
