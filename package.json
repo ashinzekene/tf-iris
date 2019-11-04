@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "npx parcel build index.html -d public",
+    "build": "npm i -g parcel-bundler && parcel build index.html -d public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserslist": [
